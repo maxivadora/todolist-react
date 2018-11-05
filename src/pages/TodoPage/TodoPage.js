@@ -1,18 +1,18 @@
 import React from 'react';
-import NewTodo from './components/NewTodo';
-import ListTodo from './components/ListTodo';
+import NewTodoConnector from './components/NewTodoConnector';
+import ListTodoConnector from './components/ListTodoConnector';
 import { Row, Col } from 'reactstrap'
 
-const HomePage = ()=> {
+const TodoPage = ()=> {
   return(
     <Row>
       <Col md={{size: 8, offset: 2}}>
-        <NewTodo />
+        <NewTodoConnector />
         <hr />
-        <ListTodo />
+        <ListTodoConnector />
       </Col>
     </Row>
   )
 }
 
-export default HomePage;
+export default TodoPage;
