@@ -28,8 +28,10 @@ const TodoReducer = (state = initialState, action) => {
     }
 
     case actionTypes.DELETING_TODO_SUCCESS: {
+      const todoFiltered = state.todos.filter((todo) => { return todo.id !== action.payload })
       return { 
         ...state,
+        todos: todoFiltered,
         deletingTodo: false
       }
     }
@@ -39,9 +41,10 @@ const TodoReducer = (state = initialState, action) => {
     }
 
     case actionTypes.ADDING_TODO_SUCCESS: {
+
       return { 
         ...state,
-        todo: action.payload,
+        todos: state.todos.concat(action.payload),
         addingTodos: false
       }
     }
@@ -51,9 +54,12 @@ const TodoReducer = (state = initialState, action) => {
     }
 
     case actionTypes.SWITCHING_TODO_SUCCESS: {
+      const todoIndex = state.todos.findIndex((e) => { return e.id === action.payload.id });
+      const stateCopy = state.todos.concat()
+      stateCopy[todoIndex] = action.payload;
       return { 
         ...state,
-        todo: action.payload,
+        todos: stateCopy,
         switchingTodo: false
       }
     }

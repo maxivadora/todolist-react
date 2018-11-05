@@ -19,7 +19,10 @@ const deleteTodo = (todo)=> (dispatch)=> {
   dispatch({type: actionTypes.DELETING_TODO});
   request.delete(`/todos/${todo.id}`)
     .then(response => {
-      dispatch({ type: actionTypes.DELETING_TODO_SUCCESS });
+      dispatch({
+        type: actionTypes.DELETING_TODO_SUCCESS,
+        payload: todo.id
+      });
     })
     .catch(error => {
       console.log(error)
@@ -30,9 +33,10 @@ const addTodo = (newTodo) => (dispatch)=> {
   dispatch({type: actionTypes.ADDING_TODO});
   request.post('/todos', {todo: newTodo} )
     .then(response => {
+      console.log(response.data);
       dispatch({ 
         type: actionTypes.ADDING_TODO_SUCCESS,
-        paylaod: response.data
+        payload: response.data
       });
     })
     .catch(error => {
@@ -44,7 +48,11 @@ const switchCompleted = (todo) => (dispatch)=> {
   dispatch({type: actionTypes.SWITCHING_TODO});
   request.patch(`/todos/${todo.id}`, {todo: {completed: todo.completed}})
     .then(response => {
-      dispatch({ type: actionTypes.SWITCHING_TODO_SUCCESS });
+      console.log(response);
+      dispatch({ 
+        type: actionTypes.SWITCHING_TODO_SUCCESS,
+        payload: response.data
+      });
     })
     .catch(error => {
       console.log(error)

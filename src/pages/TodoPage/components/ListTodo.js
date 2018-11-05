@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Input, Button} from 'reactstrap';
 
 class ListTodo extends React.Component {
-
+  
   componentDidMount(){
     this.props.todoActions.fetchTodos();
   }
